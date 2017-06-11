@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   end
    get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
+  root to: "admin/dashboard#index"
 end
