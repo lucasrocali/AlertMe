@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
 	before_action :set_user, only: [:show, :update, :destroy]
 
-	 # GET /users
+	# GET /users
   def index
+
     @users = User.all
-    json_response(@users)
+    json_response(current_user)
   end
 
   # POST /users

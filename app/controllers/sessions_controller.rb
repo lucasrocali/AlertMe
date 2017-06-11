@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
   	if user.valid_password? user_password
       sign_in user, store: false
       user.generate_authentication_token!
-      user.save
+      user.save!
       render json: user, status: 200
     else
       render json: { errors: "Invalid email or password" }, status: 422
@@ -41,6 +41,15 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+  	json_response(current_user)
+  	# user = current_user
+
+  	# user = User.find_by(auth_token: params[:id])
+  	# if user 
+	  #   user.generate_authentication_token!
+	  #   #user.save!
+	  # end
+   #  head 204
   end
 
   def user_params
