@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :locations
   resources :categories, :only => [:index]
+  resources :alert_tags, :only => [:index]
   
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'

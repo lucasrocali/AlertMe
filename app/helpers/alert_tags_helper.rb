@@ -1,0 +1,2 @@
+module AlertTagsHelper
+end

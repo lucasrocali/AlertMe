@@ -1,11 +1,9 @@
 class CategoriesController < ApplicationController
 
-	# GET /users
+	# GET /categories
   def index
   	if current_user 
 	    @categories = Category.where(parent_id: nil)
-
-	    puts @categories.to_json
 
 	    json_response(@categories)
 	  else
