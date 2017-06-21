@@ -1,5 +1,6 @@
 class Location < ApplicationRecord
   belongs_to :user
+  has_many :notifications, dependent: :destroy
 
   validates_presence_of :user_id,:lat, :lon
 

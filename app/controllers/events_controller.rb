@@ -22,6 +22,9 @@ class EventsController < ApplicationController
 
 	    @event = Event.create!(event_params)
 	    json_response(@event, :created)
+
+      #Notificate
+      
   	end
   end
 
