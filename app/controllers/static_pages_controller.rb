@@ -3,10 +3,15 @@ class StaticPagesController < ApplicationController
   end
 
   def map
-  	@locations = Location.all
-		@hash = Gmaps4rails.build_markers(@locations) do |user, marker|
-		  marker.lat user.lat
-		  marker.lng user.lon
+  # 	@events = Event.all
+		# @hash = Gmaps4rails.build_markers(@locations) do |event, marker|
+		#   marker.lat event.location.lat
+		#   marker.lng event.location.lon
+		# end
+		@locations = Location.all
+		@hash = Gmaps4rails.build_markers(@locations) do |loc, marker|
+		  marker.lat loc.lat
+		  marker.lng loc.lon
 		end
   end
 end

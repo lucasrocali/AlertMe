@@ -7,5 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'factory_girl_rails'
 20.times { FactoryGirl.create(:user) }
-40.times { FactoryGirl.create(:location) }
+100.times { FactoryGirl.create(:location) }
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+
+Category.create!(name:"Incendio")
+Category.create!(name:"Alagamento")
+Category.create!(name:"Chuva forte")
