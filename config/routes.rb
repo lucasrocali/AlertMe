@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'static_pages/home'
+
+  get 'static_pages/map'
+
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -8,6 +12,7 @@ Rails.application.routes.draw do
   resources :locations
   resources :categories, :only => [:index]
   resources :alert_tags, :only => [:index]
+  resources :events, :only => [:index,:create]
   
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'

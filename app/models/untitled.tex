@@ -1,0 +1,709 @@
+% Modelo de TCC do Bacharelado em Ciência da Computação da UNIFESP 
+% Baseado no Modelo de Documentos Academicos do ABNTex2  
+
+\documentclass[	12pt, Times, openright, twoside, a4paper, english, brazil]{abntex2}
+
+% ---
+% Pacotes fundamentais 
+% ---
+\usepackage[brazil]{babel,varioref}
+\usepackage{cmap}				% Mapear caracteres especiais no PDF
+%\usepackage{lmodern}			% Usa a fonte Latin Modern			
+\usepackage{times}
+\usepackage[T1]{fontenc}			% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{lastpage}			% Usado pela Ficha catalográfica
+%\usepackage{natbib}
+\usepackage{indentfirst}			% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+% ---
+
+% ---
+% Pacotes de citações
+% ---
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+
+% --- 
+% CONFIGURAÇÕES DE PACOTES
+% --- 
+
+% ---
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+% ---
+
+% numeração de figuras e tabelas 
+\counterwithout{figure}{section}
+\counterwithout{table}{section}
+
+%\renewcommand\tablename{Tabela{\arabic{chapter}.}}
+
+
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+\titulo{Aplicação Colaborativa para Notificação de Desastres Naturais}
+\autor{Lucas Rocali Assunção Assis}
+\local{São José dos Campos, SP}
+\data{Junho de 2017}
+\orientador{Prof. Dr. Ezequiel Roberto Zorzal}
+\coorientador{}
+\instituicao{%
+  Universidade Federal de São Paulo -- UNIFESP
+  \par
+  Instituto de Ciência de Tecnologia
+  \par
+  Bacharelado em Ciência da Computação}
+\tipotrabalho{Trabalho de Graduação}
+% O preambulo deve conter o tipo do trabalho, o objetivo, 
+% o nome da instituição e a área de concentração 
+\preambulo{Trabalho de conclusão de curso apresentado ao Instituto de Ciência e Tecnologia – UNIFESP, como parte das atividades para obtenção do título de Bacharel em Ciência da Computação.}
+% ---
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    	pdfsubject={\imprimirpreambulo},
+	    pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico}, 
+		colorlinks=true,       		% false: boxed links; true: colored links
+    	linkcolor=blue,          	% color of internal links
+    	citecolor=blue,        		% color of links to bibliography
+    	filecolor=magenta,      		% color of file links
+		urlcolor=blue,
+		bookmarksdepth=4
+}
+
+\makeatother
+% --- 
+% --- 
+% Espaçamentos entre linhas e parágrafos 
+% --- 
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.3cm}
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+% ---
+
+% compila o indice
+% ---
+\makeindex
+% ---
+
+% ----
+% Início do documento
+% ----
+\begin{document}
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing 
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+% \pretextual
+
+% ---
+% Capa
+% ---
+\begin{capa}
+  \begin{center}
+   \includegraphics[width=.25\textwidth]{logo-unifesp.pdf}
+    \vspace*{\fill}
+    
+    {\ABNTEXchapterfont\large\imprimirautor}
+    \vspace*{\fill}
+    
+    {\ABNTEXchapterfont\bfseries\Large\imprimirtitulo}
+    \vspace*{\fill}\vspace*{\fill}
+    
+   \imprimirlocal
+   \end{center}
+\end{capa}
+
+% ---
+% Folha de rosto
+% (o * indica que haverá a ficha bibliográfica)
+% ---
+\imprimirfolhaderosto*
+% ---
+
+% ---
+% Inserir folha de aprovação
+% ---
+% Isto é um exemplo de Folha de aprovação, elemento obrigatório da NBR
+% 14724/2011 (seção 4.2.1.3). Você pode utilizar este modelo até a aprovação
+% do trabalho. Após isso, substitua todo o conteúdo deste arquivo por uma
+% imagem da página assinada pela banca com o comando abaixo:
+%
+% \includepdf{folhadeaprovacao_final.pdf}
+%
+\begin{folhadeaprovacao}
+  \begin{center}
+    {\ABNTEXchapterfont\large\imprimirautor}
+
+    \vspace*{\fill}\vspace*{\fill}
+    {\ABNTEXchapterfont\bfseries\Large\imprimirtitulo}
+    \vspace*{\fill}
+    
+    \hspace{.45\textwidth}
+    \begin{minipage}{.5\textwidth}
+        \imprimirpreambulo
+    \end{minipage}%
+    \vspace*{\fill}
+   \end{center}
+    
+   Trabalho aprovado em 01 de Julho de 2017:
+
+   \assinatura{\textbf{\imprimirorientador} \\ Orientador} 
+   \assinatura{\textbf{Professor} \\ Convidado 1}
+   \assinatura{\textbf{Professor} \\ Convidado 2}
+   \assinatura{\textbf{Professor} \\ Convidado 3}
+   %\assinatura{\textbf{Professor} \\ Convidado 4}
+      
+   \begin{center}
+    \vspace*{0.5cm}
+    {\large\imprimirlocal}
+    \par
+    {\large\imprimirdata}
+    \vspace*{1cm}
+  \end{center}
+  
+\end{folhadeaprovacao}
+% ---
+
+% ---
+% Dedicatória
+% ---
+\begin{dedicatoria}
+   \vspace*{\fill}
+   \centering
+   \noindent
+   \textit{ Este trabalho é dedicado  ... } \vspace*{\fill}
+\end{dedicatoria}
+% ---
+
+% ---
+% Agradecimentos
+% ---
+\begin{agradecimentos}
+Escreva aqui os agradecimentos ...
+
+\end{agradecimentos}
+% ---
+
+% ---
+% Epígrafe
+% ---
+\begin{epigrafe}
+    \vspace*{\fill}
+	\begin{flushright}
+		\textit{``Não vos amoldeis às estruturas deste mundo, \\
+		mas transformai-vos pela renovação da mente, \\
+		a fim de distinguir qual é a vontade de Deus: \\
+		o que é bom, o que Lhe é agradável, o que é perfeito.\\
+		(Bíblia Sagrada, Romanos 12, 2)}
+	\end{flushright}
+\end{epigrafe}
+% ---
+
+% ---
+% RESUMOS
+% ---
+
+% resumo em português
+\begin{resumo}
+Este trabalho tem como objetivo criar um sistema colaborativo de notificação para desastres naturais. O sistema é composto de um aplicativo móvel que permitirá ao usuário notificar incidentes e um \textit{Web Service} que será responsável pelo gerenciamento das notificações. O aplicativo móvel será disponível em \textit{Android} e \textit{IOS} e o usuário poderá ver incidentes em um mapa, registrar um incidente e receber notificações baseado em sua localização ou áreas de interesse. O \textit{Web Service} será responsável por: gerenciar os dados do sistema, receber os registros de incidentes, gerenciar quais usuário serão notificados e renderizar uma página \textit{Web} para monitoramento dos eventos.
+ 
+ \vspace{\onelineskip}
+    
+ \noindent
+ \textbf{Palavras-chaves}: aplicativo. notificações. gerenciamento de desastres.
+\end{resumo}
+
+% resumo em inglês
+\begin{resumo}[Abstract]
+ \begin{otherlanguage*}{english}
+   \textit{This work aims to create a collaborative notification system for natural disasters. The system consists of a mobile app that will allow
+   the user to notifiy incidents and a Web Service that will be responsible for managing notifications. The mobile app will be available in Android and IOS, and the user will can view incidents on a map, record an incident and receive notifications by their location or areas of interest. The web service will be responsible for: manage system data, receive incident reports, manage which groups of users will be notified, and render a web page for monitoring events.}
+   \vspace{\onelineskip}
+ 
+   \noindent 
+   \textbf{Key-words}: disaster managemenent. notifications. smartphones. mobile
+ \end{otherlanguage*}
+\end{resumo}
+
+% ---
+% inserir lista de ilustrações
+% ---
+\pdfbookmark[0]{\listfigurename}{lof}
+\listoffigures*
+\cleardoublepage
+% ---
+
+% ---
+% inserir lista de tabelas
+% ---
+\pdfbookmark[0]{\listtablename}{lot}
+\listoftables*
+\cleardoublepage
+% ---
+
+% ---
+% inserir lista de abreviaturas e siglas
+% ---
+% \begin{siglas}
+%   \item[Fig.] Area of the $i^{th}$ component
+%   \item[456] Isto é um número
+%   \item[123] Isto é outro número
+%   \item[lauro cesar] este é o meu nome
+% \end{siglas}
+% ---
+
+% ---
+% inserir lista de símbolos
+% ---
+% \begin{simbolos}
+%   \item[$ \Gamma $] Letra grega Gama
+%   \item[$ \Lambda $] Lambda
+%   \item[$ \zeta $] Letra grega minúscula zeta
+%   \item[$ \in $] Pertence
+% \end{simbolos}
+% ---
+
+% ---
+% inserir o sumario
+% ---
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+% ---
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+
+% ----------------------------------------------------------
+% Introdução
+% ----------------------------------------------------------
+\chapter{Introdução} 
+\label{chapter:introducao}
+
+\section{Contextualização e Motivação}
+
+\cite{Cameron:2012:ESA:2187980.2188183} define que a coordenação de crise é o processo realizado por organizações e indivíduos com o intuito de reduzir a experiência dos impactos nas comunidades expostas ao perigo durante incidentes reais. Em grandes crises, entender o impacto do incidente é um fator crítico para o sucesso na recuperação de segurança e serviços essenciais. Segundo \cite{Mehta:2013:CSD:2534303.2534307}, os atuais métodos de alerta para desastres têm deficiência em definir a área de comunicação e em dinamicamente identificar os grupos de pessoas a serem notificados.
+
+Os \textit{smartphones} tem tornado possível uma nova forma de acesso a informação sem esforço, todos os dias celulares recebem uma variedade enorme de informação como \textit{email}, eventos de rede social e informações do próprios dispositivo por exemplo \cite{Mehrotra:2016:MPM:2858036.2858566}. Sendo o recurso principal dos \textit{smartphones}, as notificações têm tornado um novo canal de distribuição de informação, melhorando a cobertura e eficiência de alertas. 
+
+Esse projeto tem como objetivo cobrir essa deficiência no sistema de alerta em situações de emergência, identificar os usuários no caso de acidentes e criar um sistema de alerta pelo \textit{smartphone}. Com os dados de localização disponíveis dos usuários é possível identificar dinamicamente grupos de pessoas, e as notificações poderão ser direcionadas com informação personalizadas e instruções para cada grupo \cite{Mehta:2013:CSD:2534303.2534307}.
+
+Sendo um sistema cooperativo, ambas as partes terão uma informação mais precisa do ocorrido, onde as autoridades poderão notificar os usuários ou grupo em uma determinada área, bem como os usuários terão a possibilidade de notificar as autoridades, que terão um melhor intendimento do ocorrido e o impacto do incidente.
+
+
+\section{Objetivos}
+
+\subsection{Objetivo Geral}
+
+O objetivo desse trabalho é desenvolver um sistema colaborativo de notificação para \textit{smartphones}, com a finalidade de notificar usuários sobre desastres ou incidentes e gerar um melhor entendimento pelas autoridades do incidente ocorrido.
+
+\subsection{Objetivos Específicos}
+\begin{itemize}
+ \item Desenvolver o aplicativo no qual o usuário se registrará e será notificado.
+ \item Desenvolver um sistema de envio de notificações em um \textit{WebService}.
+ \item Desenvolver uma interface no aplicativo para o usuário sinalizar um possível incidente.
+ \item Desenvolver uma interface no aplicativo para o usuário visualizar incidentes em um mapa. 
+ \item Desenvolver um sistema em \textit{tags} onde os usuários selecionam as \textit{tags} de interesse a serem notificados.
+ \item Desenvolver um sistema que gerencie o envio de notificações para \textit{smartphones} baseado na localização ou \textit{tags} do usuário.
+ \item Desenvolver uma interface \textit{web} de monitoramento com um mapa dos incidentes e lista de notificações enviadas para os usuários.
+\end{itemize}
+
+\section{Estrutura do trabalho}
+Esse documento se divide em 5 Capítulos da seguinte forma:
+
+\begin{itemize}
+\item No Capítulo \ref{chapter:introducao} é apresentado a introdução, motivação e objetivos deste trabalho.
+\item O Capítulo \ref{chapter:funteorica} descreve a fundamentação teórica da pesquisa.
+\item O Capítulo \ref{chapter:correlatos} descreve os sistemas correlatos e faz uma comparação com o projeto proposto
+\item No Capítulo \ref{chapter:estrategias} é apresentado estrategias de desenvolvimento
+\item O Capítulo \ref{chapter:futuros} apresenta os desenvolvimentos futuros as atividades a serem cumpridas
+\end{itemize}
+
+% ----------------------------------------------------------
+% Fundamentação Teórica 
+% ----------------------------------------------------------
+\chapter{Fundamentação Teórica}
+\label{chapter:funteorica}
+
+Este Capítulo descreve uma breve fundamentação dos principais conceitos envolvidos neste trabalho.
+
+\section{Gerenciamento de desastres}
+
+Segundo o modelo de \cite{endsley} o conhecimento de uma situação de forma dinâmica pode ser dividido em três etapas: percepção das pistas sensoriais do ambiente, compreensão das pistas em conjunto com a interpretação da informação e projeção do que pode acontecer na sequência. Sendo a percepção e compreensão de incidentes etapas fundamentais e um desafio no gerenciamento de desastres.
+
+A dificuldade na comunicação entre órgãos responsáveis por gerenciamento de desastres e a população é um fator crucial no gerenciamento de acidentes que depende de uma comunicação rápida e efetiva. \cite{Chen:2016:CCN:2984356.2984368} sugere que é difícil conseguir uma resposta efetiva das consequências do acidente ou desastre com os sistemas de comunicação existentes. Essa dificuldade se deve pelo fato das pessoas envolvidas no incidente terem que saber que órgão está lidando com o incidente, como consequência as mensagens acabam não chegando para o órgão correto, resultando em confusão ao invés de um real conhecimento do desastre entre os envolvidos. 
+
+Com a falta de uma informação precisa e em tempo real do incidente e dos envolvidos, nos atuais sistemas de comunicação, os órgãos responsáveis tem dificuldade em gerenciar os recursos para lidar com o incidente. Um outro problema se deve também pelo fato de que conforme as esquipes se mobilizam em direção ao incidente a falta de comunicação entre essas esquipes, a central e as vitimas gera dificuldades na correção de erros ou conhecimento mais preciso do incidente. Um fator que deve ser levado em conta na categorização sugerido por \cite{Lorenzi:2013:CBE:2479724.2479739} é o regionalismo, onde sistemas de emergência são de certa forma únicos para cada região pois não é possível generalizar um solução ou plano de contingência que pode ser aplicado para todos os incidentes.
+
+\cite{Chen:2016:CCN:2984356.2984368} também faz um estudo de cenário de um atentado em 2005 em Londres, onde um ponto de destaque foi a falha de comunicação entre diferentes setores, a informação não se propagava de forma efetiva não chegando para pessoas corretas, dificultando bastante o envio de recursos de forma rápida e falta de coordenação entre os setores. Mesmo sendo um estudo para um tipo especifico de desastre as conclusões desse estudo refletem em grande parte características comuns de vários tipos de incidentes quanto ao envolvimento de diferentes setores e a importância da comunicação para uma resposta efetiva, que inclui não só a comunicação por parte das vitimas com os setores responsáveis mas como a comunicação entre os principais serviços como um todo para um real entendimento de eventuais desastres pelos órgão responsáveis. 
+
+\section{Ambientes Colaborativos Móveis}
+
+Um estudo sobre a percepção do usuário em relação a notificações descrito no artigo \cite{SahamiShirazi:2014:LAM:2556288.2557189} onde foram analisados mais de 200 milhões de notificações com 40 mil usuários conclui que quando um usuário clica em uma notificação isso geralmente ocorre em menos de 30 segundos. O estudo também mostra que o método unificado de apresentação das notificações nos dois principais sistemas móveis (\textit{Android} e \textit{IOS}) trouxeram um experiência totalmente nova e consolidaram esse sistema de alerta como sendo um dos principais canais de recebimento de informação pelos usuários. Alguns outros fatores que contribuíram para essa consolidação foi fato de que as notificações são entregues para um mecanismo altamente unificado e usados por vários tipos de serviço, tem uma variedade enorme de eventos que vão de alerta de mensagens a informações do sistema e tornaram-se persuasivas devido a onipresença dos \textit{smartphones} sempre em uso pelos usuários.
+
+\cite{Dustdar:2002:ACD:568760.568852} ressalta que o aumento do uso de sistemas de subscrição para dispositivos móveis são necessários para disseminar informação aos participantes ao invés de forçar o usuário a procurar por informação. E tem-se tornado uma tendência o uso dessa funcionalidade seja por um aplicativo informativo que notifica usuários de noticias de importância ou de interesse do usuário como por diversos seguimentos de aplicativos que usam a notificação como a finalidade de aumentar a interação e comunicação com o usuário.
+
+\cite{Konomi:2011:BMC:2030100.2030106} sugere que o uso da localização dos usuários é extremamente útil a como o usuários se comunicam e interagem com a informação favorecendo o uso em sistemas colaborativos, mas que deve-se ter um cuidado em usar a localização do usuário em forma de grupos sem violar a privacidade do usuário. Outra tecnologia que fomenta o aumento de sistemas colaborativos é a computação em nuvem que trouxe uma revolução ao modo como os serviços são desenvolvidos ondem podem ser acessados por diferentes plataformas mantendo um estado único do sistema e seus dados.
+
+Sistemas colaborativos vem usando então dessas novas funcionalidades trazidas pela tecnologia e pelo crescimento do uso de \textit{smartphones} para trazer novas experiências em como o usuário se comunica com outros usuários otimizando a colaboração em grupo para uma determinada finalidade dos mais diversos segmentos.
+
+% Portanto, vem crescendo a cada dia serviços e sistemas que utilizam desses novos conceitos relacionados a como o usuário interage com a informação para criar sistemas colaborativos, dos mais diversos segmentos onde pessoas se juntam e interagem por uma tarefa em comum ou conecta usuários 
+
+% como o serviço de notificação se tornaram a principal interface de recebimento de informação por parte dos usuários e o uso de funcionalidades do smartphones como acesso a localização mudaram como os usuários interagem com a informação.
+
+% Arquiteturas de sistemas colaborativos móveis devem ser: abertas a integração de tecnologias e ferramentas existentes, genérica para fácil implementação em organizações com diferentes arquiteturas e infraestruturas, escalável para diferentes números de participantes e futuras extensões ou novos requerimentos e adaptável as diferentes restrições impostar pela mobilidade dos participantes e dos dispositivos \cite{Dustdar:2002:ACD:568760.568852}.
+
+% Portando, os aplicativos junto ao uso de funcionalidades  trouxeram novas experiências quanto a comunicação e recebimento de informação e suas funcionalidades
+
+% unto se tornando o principal meio de comunicação por parte dos usuários e com o uso de notificações se tornando 
+
+
+% ----------------------------------------------------------
+% Sistemas Correlatos
+% ----------------------------------------------------------
+\chapter{Sistemas Correlatos}
+\label{chapter:correlatos}
+Neste capitulo são descritos alguns sistemas correlacionados ao sistema proposto neste trabalho.
+\section{Critérios de Pesquisa}
+Foram pesquisados sistemas com características similares ao sistema proposto. Os sistemas variam bastante quanto a sua funcionalidade e uma explicação mais detalhada da semelhança de cada um será discutida na Seção \ref{section:analisesistemas}.
+
+\section{Sistemas Estudados}
+\subsection{Emergency Situation Awareness from Twitter for Crisis Management}
+\label{subsection:twitter}
+É um projeto conduzido pelo governo da Austrália (Figura \ref{fig:austwiter}) que usa publicações no \textit{Twiter} para detectar, avaliar, resumir e reportar mensagens de interesse para coordenação de crises e incidentes, detectando informações de \textit{tweets} não usuais que podem ser relatados antes de comunicações oficiais. O artigo \cite{Cameron:2012:ESA:2187980.2188183} que descreve o projeto relata a atual limitação do Centro de Coordenação de Crise do Governo Australiano em gerenciar e processar o fluxo de informações de diferentes fontes, onde toda informação tem que ser verificada e classificada como um relato de incidente. Onde os observadores procuram entender o escopo e impacto de todos os perigos durante as fases de prevenção, preparação, reposta e recuperação do gerenciamento de crise.
+
+Todos os \textit{tweets} são classificados usando \textit{Support Vector Machines} que foram treinados com os \textit{tweets} reais do terremoto de Fevereiro de 2011 no Japão. O sistema mostra em um mapa a localização da fonte e o volume de \textit{tweets} capturados (Figura ~\ref{fig:austwiter}), possibilitando ao observador informações mais especificas de relatos classificados como relevantes pelo sistema.
+
+\begin{figure} [!h]
+\centering
+  \includegraphics[width=0.5\columnwidth]{images/austwiter.png}
+  \caption{\textit{Tweet Map} do projeto do Centro de Coordenação de Crise do Governo Australiano}~\label{fig:austwiter}
+\end{figure}
+
+\subsection{\textit{CNS: Content-oriented Notification Service for Managing Disasters}}
+\label{subsection:cns}
+CNS \cite{Chen:2016:CCN:2984356.2984368} é um sistema que auxilia gerenciadores de desastres a como eles devem se comunicar e notificar outros setores em um eventual incidente. O CNS é um sistema na camada da aplicação que usa a rede centrada de informação (ICN). A estrutura de comunicação é feita de forma hierárquica seguindo como é estruturada a administração dos setores (Figura ~\ref{fig:cns}). 
+
+Podem ser criados diferentes \textit{templates} da estrutura hierárquica de comunicação para diferentes tipos de incidentes. O \textit{template} pode então ser usado de acordo, e a comunicação será disseminada seguindo a estrutura do \textit{template}.
+
+\begin{figure} [!h]
+\centering
+  \includegraphics[width=0.8\columnwidth]{images/cns.png}
+  \caption{CNS: Exemplo da estrutura hierárquica de comunicação}~\label{fig:cns}
+\end{figure}
+
+\subsection{\textit{Mobile4D: Crowdsourced Disaster Alerting and Reporting}}
+\label{subsection:mobile4d}
+
+\textit{Mobile4D} \cite{Frommberger:2013:MCD:2517899.2517925} é um sistema móvel integrável para alertar e reportar desastres baseado na detecção de grupos de usuários. O sistema consiste de um aplicativo \textit{Android} (Figura ~\ref{fig:mobile4d}) que permite que os usuários afetados reportarem diretamente os incidentes para setores governamentais responsais, abrindo um canal de comunicação entre a vitima e o setor responsável. 
+
+O sistema tem também conta com uma pagina \textit{web} por onde os setores governamentais recebem e gerenciam os relatos, permitindo também que os setores enviem alertas a grupos de pessoas afetadas. O sistema é colaborativo pois não depende diretamente dos setores, uma vez que quando um alerta é reportado a um usuário o próprio sistema já notifica automaticamente os usuários próximos e permite também que os setores alertem outros grupos de pessoas.
+
+\begin{figure}[h]
+\centering % para centralizarmos a figura
+\includegraphics[width=6cm]{images/mobile4d1.png} % leia abaixo
+\includegraphics[width=6cm]{images/mobile4d2.png} % leia abaixo
+\caption{Aplicativo \textit{Mobile4D} e versão \textit{web} de monitoramento}
+\label{fig:mobile4d}
+\end{figure}
+
+\subsection{\textit{SafeZone}}
+\label{subsection:safezone}
+\textit{SafeZone} (Figura ~\ref{fig:Safezone}) (REF) é um aplicativo de alerta que conecta os estudantes e professores da faculdade \textit{RMIT} (\textit{Royal Melbourne Institute of Technology -  Melbourne, Austrália}) diretamente com o time de segurança quando um pessoa precisa de ajuda no campus. 
+
+Existe também o aplicativo \textit{OmniGuard} que recebe as notificações do \textit{SafeZone} e são mostrados em um mapa, permitindo que o time de segurança entre em contato com o usuário que reportou o incidente. 
+
+\begin{figure}[h]
+\centering % para centralizarmos a figura
+\includegraphics[width=4cm]{images/safezone.png} % leia abaixo
+\includegraphics[width=4cm]{images/safezonesec.png} % leia abaixo
+\caption{Aplicativos \textit{Safezone} e \textit{OmniGuard}}
+\label{fig:Safezone}
+\end{figure}
+
+\subsection{\textit{Emergency: Alerts & Notifications By American Red Cross}}
+\label{subsection:redcross}
+É um aplicativo (REF) de notificações desenvolvido pela \textit{American Red Cross} que monitora as condições na área do usuário ou área de pessoas de interesse e notifica o usuário em caso de desastres naturais ou incidentes  (Figura ~\ref{fig:RedCross}).
+
+O sistema permite que os usuário sigam regiões de interesse, dessa forma as notificações de incidentes são disseminadas não só aos usuários que estão na região do incidente como por pessoas que seguem aquela região. Uma outra funcionalidade é a possibilidade de comunicar diretamente com outros usuários que podem estar em regiões de risco e verificar a situação deles.
+
+\begin{figure}[h]
+\centering % para centralizarmos a figura
+\includegraphics[width=8cm]{images/redcross.png} % leia abaixo
+\caption{Aplicativo \textit{Emergency By American Red Cross}}
+\label{fig:RedCross}
+\end{figure}
+
+\section{Análise dos Sistemas Estudados}
+\label{section:analisesistemas}
+Alguns sistemas reforçam a necessidade do uso da informação dos usuários como um canal de percepção de desastres (\ref{subsection:twitter}), outros sugerem arquiteturas para melhorar a comunicação das vitimas com os responsável em sistemas hierárquicos (\ref{subsection:cns}). E os três últimos (\ref{subsection:mobile4d}, \ref{subsection:safezone}, \ref{subsection:redcross}) se assemelham tanto em relação ao gerenciamento de desastre quanto a natureza colaborativa por parte dos usuários.
+
+O sistema CNS não foi incluído na comparação pelo fato de que ele só se assemelha em uma funcionalidade especifica que é o sistema de comunicação estruturado por níveis.
+
+O sistema proposto tem caracteristicas similares a cada um dos sistemas estudados 
+foi dividido em 5 funcionalidades ou características e na Tabela \ref{tab:siscomp} está uma breve comparação dos sistemas estudados com o sistema proposto.
+
+\begin{table}[htb]
+\footnotesize
+\caption{Tabela comparativa de funcionalidades e características dos sistemas estudados.}
+\label{tab:siscomp}
+\begin{tabular}{p{2.0cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}}
+  %\hline
+   & \textbf{\textit{Twitter CM}} & \textbf{\textit{Mobile4D}}  & \textbf{\textit{SafeZone}}  & \textbf{\textit{RedCross}} & \textbf{Sistema proposto}   \\
+    \hline
+    Aplicação mobile & & Usuários notificam, recebem notificação de incidentes e tem um canal de comunicação com os monitores & Alunos notificam incidentes e tem um canal de comunicação com os seguranças & Usuários recebem notificação de incidentes pela sua localização ou regiões de interesse e tem um canal de comunicação com outros usuários & Usuários recebem notificação de incidentes pela sua localização ou regiões de interesse \\
+    \hline
+    Monitoramento & Pagina \textit{web} com mapa que mostra o local e volume de tweets & Pagina web com mapa mostrando os incidentes, o monitor tem a possibilidade também de abrir um canal de comunicação direto com usuário por chat & Um aplicativo móvel (\textit{OmniGuard}) com um mapa dos incidentes, onde o monitor pode notificar o usuário do reconhecimento do incidente e/ou ligar para o usuário  & & Pagina \textit{web} com mapa que mostra a localização dos usuários, local dos incidentes e lista com notificações enviadas \\
+    \hline Setores responsáveis & \textit{Australian Government Crisis Coordination Centre} & Unidades Administrativas Governamentais & Seguranças da universidade RMIT & \textit{American Red Cross} &  \\
+    \hline Sistema colaborativo & Qualquer usuário do Twitter que posta alguma mensagem é um colaborador passivo do sistema & Usuários usam o aplicativo para ativamente notificar incidentes e comunicarem com os monitores & & Usuários tem a possibilidade de seguir outros usuários e abrir um canal de comunicação com eles em caso de incidentes & Usuários usam o aplicativo para notificar incidentes \\
+    \hline Notificação de incidentes & & Usuários são notificados pelos monitores ou pelo relato de outros usuários & & Usuários recebem notificação baseado em sua localização ou lugares que o usuário segue & Usuários são noticados pelo relato de outros usuários baseado em sua localização ou regiões de interesse \\
+   % \hline
+\end{tabular}
+\end{table}
+
+
+% ----------------------------------------------------------
+% Estratégias para Desenvolvimento
+% ----------------------------------------------------------
+\chapter{Estratégias para Desenvolvimento}
+\label{chapter:estrategias}
+Para o desenvolvimento da aplicação serão utilizados um notebook modelo \textit{Macbook Pro} com sistema operacional \textit{Mac OSX Sierra} e um dispositivo móvel \textit{iPhone} 6 para o desenvolvimento do aplicativo. Para o desenvolvimento \textit{Android} o teste no aplicativo será feito pelo emulador.
+
+A linguagem de programação para o aplicativo \textit{Android} será \textit{Kotlin}, utilizando o ambiente de desenvolvimento \textit{Android Studio}. 
+A linguagem de programação para o aplicativo \textit{IOS} será \textit{Swift}, utilizando o ambiente de desenvolvimento \textit{Xcode}.
+
+Será utilizado também o \textit{framework Ruby on Rails} para a criação do \textit{Web Service}, com banco de dados \textit{MySql} e utilizando \textit{Json} para comunicação com o aplicativo.
+
+Será utilizado o \textit{framework One Signal} para o envio de notificações do \textit{Web Service} para o aplicativo.
+
+\section{Arquitetura do sistema}
+O sistema é dividido em duas partes, a aplicação móvel e o \textit{Web Service}. O aplicativo requisita e fornece informação ao \textit{Web Service}, que é responsável por armazenar os dados no banco de dados, requisitar envio de notificação por \textit{push} via \textit{OneSignal} e renderizar a página \textit{web} com o mapa para o monitoramento dos eventos. 
+
+A Figura \ref{fig:Exemplo} mostra um exemplo de funcionamento do sistema, onde um incidente é reportado e os outros usuários são notificados baseado em proximidade com o incidente ou pelas \textit{tags} (Seção \ref{section:tags}) de preferência.
+
+A Figura \ref{fig:Arquitetura} apresenta de forma resumida como é a arquitetura do sistema. 
+
+\begin{figure}[h]
+\centering % para centralizarmos a figura
+\includegraphics[width=1.0\columnwidth]{images/exemplo_alert_me.png} % leia abaixo
+\caption{Exemplo do registro de incidentes e recebimento de notificações}
+\label{fig:Exemplo}
+\end{figure}
+
+\begin{figure}[h]
+\centering % para centralizarmos a figura
+\includegraphics[width=0.9\columnwidth]{images/arquitetura.png} % leia abaixo
+\caption{Arquitetura do sistema}
+\label{fig:Arquitetura}
+\end{figure}
+
+\section{Aplicação móvel}
+A aplicação móvel é a interface do usuário com o sistema e é responsável por fazer o login via \textit{Facebook} do usuário, apresentar a lista de incidentes e permitir que o usuário reporte incidentes. Ao ver em detalhe um incidente o usuário pode também denunciar aquele incidente como algo falso ou reforçar o relato, que trará maior credibilidade e o raio de usuários a serem notificados poderá aumentar.
+
+O usuário tem também a opção de selecionar \textit{tags} ou categorias de interesse para notificação. Na seção \ref{section:tags} é discutido em mais detalhes como funciona o sistema de \textit{tags}.
+
+A Figura \ref{fig:App} apresenta um projeção de como serão as telas do aplicativo e a navegação entre elas. Na Figura é apresentado também as requisições que são feitas ao \textit{Web Service} em cada uma das telas.
+
+\begin{figure}[h]
+\centering % para centralizarmos a figura
+\includegraphics[width=1.0\columnwidth]{images/app.png} % leia abaixo
+\caption{Modelo de telas e requisições do aplicativo}
+\label{fig:App}
+\end{figure}
+
+\subsection{Notificações por \textit{push}}
+Será usado o serviço de notificação por \textit{push One Signal} (REF), esse serviço facilita o envio de notificações em múltiplas plataformas. O sistema é integrado ao aplicativo, que gera e registra o id único de cada dispositivo móvel no serviço, com esse id o \textit{One Signal} possibilita o envio de notificação por \textit{push} direta a qualquer usuário registrado. O id gerado pelo serviço é armazenado também pelo sistema no \textit{Web Service}, que consegue fazer a requisição via a \textit{API} do serviço para enviar notificação para um determinado usuário.
+
+\section{\textit{Web Service}}
+Será utilizado o \textit{framework Ruby on Rails} para a criação do \textit{WebService}, que será responsável por responder a todas as requisições feitas pelo aplicativo, retornando dados ou registrando incidentes, bem como por gerenciar os usuários a serem notificados com base em suas localizações ou \textit{tags} de interesse.
+
+O \textit{Web Service} é responsável também por requisitar via \textit{API} o envio de notificação por \textit{push} ao serviço \textit{OneSignal}.
+
+\subsection{Página de monitoramento}
+O sistema propõem uma simples pagina de monitoramento, onde será mostrado um mapa com todas os incidentes reportados bem como a localização dos usuários. A pagina terá também uma lista com o histórico de notificações enviados aos usuários.
+
+\section{Projeto de Banco de dados}
+Será utilizado o banco de dados \textit{MySQL} que será integrado ao \textit{Web Service}. Todas as requisições ao banco será feitas diretamente pelo \textit{Web Service} que será responsável então por administrar e repassar os dados.
+
+Um modelo do banco de dados proposto é apresentado na Figura \ref{fig:Banco}.
+\begin{figure}[h]
+\centering % para centralizarmos a figura
+\includegraphics[width=0.9\columnwidth]{images/banco.png} % leia abaixo
+\caption{Modelo do banco de dados}
+\label{fig:Banco}
+\end{figure}
+
+\section{Sistema de \textit{Tags}}
+\label{section:tags}
+O sistema de \textit{tags} será utilizado como uma estrutura em forma de árvore para gerenciar níveis localizações. Por exemplo a \textit{tag} do bairro Satélite tem como \textit{tag} pai a tag São José dos campos. Portanto ao notificar todas as pessoas que seguem a \textit{tag} Satélite o sistema automaticamente notifica também todos que seguem a \textit{tag} pai São José dos Campos.
+% ----------------------------------------------------------
+% Desenvolvimentos Futuros 
+% ----------------------------------------------------------
+\chapter{Desenvolvimentos Futuros}
+Este capítulo apresenta os desenvolvimentos previstos, o cronograma e os resultados esperados.
+\label{chapter:futuros}
+\section{Desenvolvimentos Previstos}
+O projeto proposto será definido seguindo as seguintes etapas:
+
+\begin{itemize}
+ \item \textit{atividade 1:} Modelagem do sistema (\textit{WebService} e aplicativo)
+ \item \textit{atividade 2:} Modelagem do banco
+ \item \textit{atividade 3:} Desenvolvimento do \textit{WebService}
+ \item \textit{atividade 4:} Desenvolvimento do sistema de envio de notificações
+ \item \textit{atividade 5:} Desenvolvimento do sistema de \textit{tags}
+ \item \textit{atividade 6:} Desenvolvimento da aplicação \textit{IOS} e integração com o \textit{WebService}
+ \item \textit{atividade 7:} Desenvolvimento da aplicação \textit{Android} e integração com o \textit{WebService}
+ \item \textit{atividade 8:} Elaboração do relatório final
+\end{itemize}
+
+\begin{table}[!h]
+\caption{Tabela de cronograma de atividades.} \label{tabela:cronograma}
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|c|c|c|}
+\hline
+{\bf Atividade} &     Abril &     Maio &     Junho &     Julho &     Agosto &     Setembro &   Outubro &  Novembro \\
+\hline
+atividade 1 & x  & & & & & & &       \\
+\hline
+atividade 2 & x  & & & & & & &       \\
+\hline
+atividade 3 & & x  & x  & x  & & & &       \\
+\hline
+atividade 4 & & & x  & x  & & & &       \\
+\hline
+atividade 5 & & & x  &x  & & & &       \\
+\hline
+atividade 6 & & & & x  & x  & x  & &       \\
+\hline
+atividade 7 & & & & & x  & x  & x  &       \\
+\hline
+atividade 8 & & x  & x  & & &  & x  &  x     \\
+
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+\section{Resultados Esperados}
+Este trabalho tem como resultados esperados:
+\begin{itemize}
+ \item Aplicar conhecimentos obtidos durante a graduação
+ \item Disseminar as tecnologias e técnicas utilizadas no desenvolvimento 
+ \item Criar um sistema seguro, escalável e de fácil usabilidade 
+\end{itemize}
+% ---
+% Capitulo de revisão de literatura
+% ---
+% \chapter{Revisão Bibliográfica}
+
+% % ---
+% \section{Introdução}
+% ---
+
+% ---
+% primeiro capitulo de Resultados
+% ---
+% \chapter{Resultados}
+
+% ---
+% Finaliza a parte no bookmark do PDF, para que se inicie o bookmark na raiz
+% ---
+% \bookmarksetup{startatroot}% 
+% ---
+
+% ---
+% Conclusão
+% ---
+% \chapter{Conclusão}
+
+
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+\postextual
+
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+%\bibliographystyle{plain}
+\bibliography{references}
+
+% ----------------------------------------------------------
+% Glossário
+% ----------------------------------------------------------
+%
+% Consulte o manual da classe abntex2 para orientações sobre o glossário.
+%
+%\glossary
+
+% ----------------------------------------------------------
+% Apêndices
+% ----------------------------------------------------------
+
+% ---
+% Inicia os apêndices
+% ---
+% \begin{apendicesenv}
+
+% % Imprime uma página indicando o início dos apêndices
+% \partapendices
+
+% % ----------------------------------------------------------
+% \chapter{Título de Apêndice}
+% % ----------------------------------------------------------
+
+
+% % ----------------------------------------------------------
+% \chapter{Título do Apêndice}
+% % ----------------------------------------------------------
+
+
+% \end{apendicesenv}
+% ---
+
+
+% ----------------------------------------------------------
+% Anexos
+% ----------------------------------------------------------
+
+% ---
+% Inicia os anexos
+% ---
+% \begin{anexosenv}
+
+% % Imprime uma página indicando o início dos anexos
+% \partanexos
+
+% % ---
+% \chapter{Título do Anexo}
+% % ---
+
+% \end{anexosenv}
+
+\end{document}

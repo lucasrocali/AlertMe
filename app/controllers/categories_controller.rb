@@ -7,7 +7,7 @@ class CategoriesController < ApplicationController
 
 	    json_response(@categories)
 	  else
-	  	render json: { errors: "Not signed in" }, status: 422
+	  	render json: { errors: "Not signed in" }, status: 200
 	  end
   end
 end

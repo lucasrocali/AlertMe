@@ -14,6 +14,9 @@ gem 'rails', '~> 5.0.3'
 gem 'puma', '~> 3.0'
 gem 'activeadmin'
 gem 'devise'
+gem 'geocoder'
+gem 'gmaps4rails'
+gem 'underscore-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production

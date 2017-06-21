@@ -31,5 +31,9 @@ module Alertme
     config.middleware.use Rack::MethodOverride
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
+
+    # config.assets.compile = true
+    # config.assets.precompile =  ['*.js', '*.css', '*.css.erb'] 
+
   end
 end
