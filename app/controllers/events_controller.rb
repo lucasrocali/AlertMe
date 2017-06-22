@@ -21,9 +21,17 @@ class EventsController < ApplicationController
 	  	#json_response(event_params)
 
 	    @event = Event.create!(event_params)
-	    json_response(@event, :created)
 
       #Notificate
+      @nearlocations = Location.where.not(:id => @location.id).within(10, :origin => @location).group(:user_id)
+
+      @nearlocations.each do |location|
+        Notification.create!(:location_id => location.id,:event_id => @event.id)
+      end
+
+	    json_response(@event, :created)
+
+      
       
   	end
   end

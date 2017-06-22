@@ -1,9 +1,13 @@
 class StaticPagesController < ApplicationController
   def home
-  	#distance_sql = Graticule::Distance::Spherical.to_sql(:latitude => latitude, :longitude => longitude, :units => :kilometers)
-  	@locations = ActiveRecord::Base.connection.execute("Select id,user_id,lat,lon FROM Locations WHERE lat < 0")
-  	#@locations = Location.near([-22.70,-43.50], 20)
-  	#Store.find(:all, :origin =>[37.792,-122.393], :within=>10)
+
+    @somewhere = Location.find(100)
+    @locations = Location.where.not(:id => @somewhere.id).within(10, :origin => @somewhere).group(:user_id)
+
+    @locations.each do |location|
+      #Notification.create!(:location_id => location.id,:event_id => 1)
+    end
+
   	render json: @locations
   end
 
@@ -14,10 +18,37 @@ class StaticPagesController < ApplicationController
 		#   marker.lng event.location.lon
 		# end
 		@locations = Location.all
-		@hash = Gmaps4rails.build_markers(@locations) do |loc, marker|
-		  marker.lat loc.lat
-		  marker.lng loc.lon
-		end
+
+    @events = Event.all
+
+    @notifications = Notification.all
+		# @hash = Gmaps4rails.build_markers(@locations) do |loc, marker|
+  #     marker.title loc.id
+		#   marker.lat loc.lat
+		#   marker.lng loc.lon
+		# 
+    @hashl = Gmaps4rails.build_markers(@locations) do |location, marker|
+      marker.lat location.lat
+      marker.lng location.lon
+      marker.title "#{location.id}-#{location.user.name}"
+      marker.json({
+        :name => location.id,
+      })
+
+    end
+
+
+    @hashe = Gmaps4rails.build_markers(@events) do |event, marker|
+      marker.lat event.location.lat
+      marker.lng event.location.lon
+      marker.title "#{event.id}-#{event.category.name}"
+
+      marker.picture({
+         :url => "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=A|007FFF|000000",
+         :width   => 32,
+         :height  => 32
+      })
+    end
   end
 end
 
