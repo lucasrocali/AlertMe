@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+#rake db:drop db:create db:migrate db:seed
 require 'factory_girl_rails'
 20.times { FactoryGirl.create(:user) }
 100.times { FactoryGirl.create(:location) }
@@ -13,3 +14,5 @@ AdminUser.create!(email: 'admin@example.com', password: 'password', password_con
 Category.create!(name:"Incendio")
 Category.create!(name:"Alagamento")
 Category.create!(name:"Chuva forte")
+Category.create!(name:"Deslizamento")
+Category.create!(name:"Incendio Florestal")

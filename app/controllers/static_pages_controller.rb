@@ -37,6 +37,7 @@ class StaticPagesController < ApplicationController
 
     end
 
+    @circles = []
 
     @hashe = Gmaps4rails.build_markers(@events) do |event, marker|
       marker.lat event.location.lat
@@ -48,7 +49,11 @@ class StaticPagesController < ApplicationController
          :width   => 32,
          :height  => 32
       })
+
+      @circles << {'lat' => event.location.lat, 'lng' => event.location.lon, 'radius' => 10000}
     end
+
+     
   end
 end
 

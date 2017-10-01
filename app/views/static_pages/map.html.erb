@@ -12,7 +12,7 @@
 	</head>
 	<body>
 		<div style='width: 100%;'>
-		  <div id="map" style='width: 100%; height: 400px;'></div>
+		  <div id="map" style='width: 100%; height: 500px;'></div>
 		</div>
 		<h2>Notificações</h2>
   	<table class=" table table-stripped">
@@ -66,8 +66,9 @@
       _.each(json_array, function(json, index){
         json.marker = markers[index];
       });
-
-    createSidebar(json_array);
+    circle = <%=raw @circles.to_json %>;
+    circle_options = { strokeColor:"#4400FF",strokeOpacity: 1, strokeWeight: 2, fillColor: 'transparent' }
+    handler.addCircles(circle, circle_options);
     handler.bounds.extendWith(markers);
     handler.fitMapToBounds();
   });

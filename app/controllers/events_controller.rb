@@ -27,6 +27,8 @@ class EventsController < ApplicationController
 
       @nearlocations.each do |location|
         Notification.create!(:location_id => location.id,:event_id => @event.id)
+
+        
       end
 
 	    json_response(@event, :created)
